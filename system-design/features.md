@@ -1,0 +1,35 @@
+- [x] Primitive Data Loaders
+  - [x] ArrayBuffer
+  - [x] Text
+  - [x] Blob
+  - [x] JSON
+  - [x] ImageBitmap
+
+- [x] Binary Readers
+  - [x] u8, u16, u32
+  - [x] i8, i16, i32
+  - [x] f32
+  - [x] ASCII
+  - [ ] UTF-8 (.tar / i18n support)
+
+- [ ] WAD Support
+  - [x] WAD Loader
+  - [x] WAD Reader
+  - [ ] WAD Parser (as lazily as possible)
+    - [x] Determine width/height of texture with 0-copy of texture data
+    - [x] Determine sky
+      - starts with "sky"
+    - [x] Determine fluid
+      - starts with *
+    - [x] Determine animated (and framecount)
+      - starts with "+"
+      - has digits preceding any text in name
+      - parse digits (figure out if it ends at 9 or needs padding)
+      - works differently than model animations
+    - [ ] Determine hidden
+      - in list of hidden names ("clip", "trigger", "skip", etc)
+      - find exhaustive list
+    - [ ] Determine if emissive
+      - scan each pixel (at each mip? at highest mip?) and see if the index is >= (256 - 32)
+    - [ ] Determine if transparent
+      - scan each pixel and see if the index is 255 (works differently than model textures)
