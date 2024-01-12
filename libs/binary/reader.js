@@ -31,3 +31,5 @@ export const  i8 = ByteReader(Int8Array);
 export const i16 = ByteReader(Int16Array);
 export const i32 = ByteReader(Int32Array);
 export const f32 = ByteReader(Float32Array);
+
+export default { u8, u16, u32, i8, i16, i32, f32 };

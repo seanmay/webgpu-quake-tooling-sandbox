@@ -1,4 +1,4 @@
-import { u8 } from "./byte-reader.js";
+import { u8 } from "./binary/reader.js";
 
 export const ascii = {
   scalar: (view, byte_offset) => {

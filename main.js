@@ -1,20 +1,19 @@
 /// <Reference path="./types/webgpu.d.ts" />
 
 import { load_buffer, load_text } from "./libs/loaders.js";
-import { f32, u8, u16 } from "./libs/byte-reader.js";
-import { ascii } from "./libs/text-reader.js";
 import { read_directory_entries, read_directory_entry, read_header, read_wad, read_wad_descriptors } from "./libs/wad/reader.js";
 
+const wad_manifest = {
+  start: "/assets/textures/start.wad",
+  prototype: "/assets/textures/prototype_basic_1_3.wad",
+};
 
-const start_buffer = await load_buffer("./assets/start.wad");
-const prototype_buffer = await load_buffer("./assets/prototype_basic_1_3.wad");
-
-const start_wad_descriptors = read_wad_descriptors(new DataView(start_buffer));
-
-const wad_files = await Promise.all([
-  load_buffer("./assets/start.wad").then(wad => ["start", read_wad(new DataView(wad))]),
-  load_buffer("./assets/prototype_basic_1_3.wad").then(wad => ["prototype", read_wad(new DataView(wad))])
-]).then(entries => Object.fromEntries(entries));
+const wad_files = await Promise.all(
+  Object.entries(wad_manifest)
+    .map(([key, path]) =>
+      load_buffer(path)
+        .then(buffer => [key, read_wad(new DataView(buffer))]))
+).then(entries => Object.fromEntries(entries));
 
 
 const palette = document.createElement("canvas");
@@ -241,3 +240,9 @@ render_pass.draw(6);
 render_pass.end();
 
 device.queue.submit([encoder.finish()]);
+
+const on_opaque_render_pass = (render_calls) => {
+  
+  for (render of render_calls)
+    render(render_pass);
+};

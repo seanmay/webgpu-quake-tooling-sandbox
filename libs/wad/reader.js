@@ -1,4 +1,4 @@
-import { u16, u32, u8 } from "../byte-reader.js";
+import { u8, u16, u32 } from "../binary/reader.js";
 import { ascii } from "../text-reader.js";
 
 const WAD_HEADER_SIZE = 12;
