@@ -7,8 +7,14 @@
 - [x] Barebones Textured Triangle Render Pass
 SUCCESS!
 
+## 2024-01-12
+- [ ] Load HL .MAP Files
+- [ ] Read HL .MAP Files
+- [ ] Parse HL .MAP Files
+
 
 ## NEXT
+- [ ] Parse HL .MAP Files
 - [ ] Factor Out Mesh / Material Data
 - [ ] Create "Fake" Mesh (vertices, uvs, normals, textures)
 - [ ] Abstract Render Passes (design API for rendering batch / list)
